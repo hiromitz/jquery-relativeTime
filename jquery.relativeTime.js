@@ -1,7 +1,14 @@
 /**
+ * Relative Time - Plugin for jQuery
  * make time as relative
+ *
+ * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
+ * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+ *
+ * Depends:
+ *   jquery.js
  * 
- * Author: Hiromitsu Miyanishi
+ * Author: hiromitz ( http://github.com/hiromitz )
  * 
  */
 ;(function($) {
