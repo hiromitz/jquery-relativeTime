@@ -1,0 +1,9 @@
+*.class
+*.pyc
+*.pyo
+.?~
+.DS_Store
+.buildpath
+.project
+.tml?
+.tmp*
