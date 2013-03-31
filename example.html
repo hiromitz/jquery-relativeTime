@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta name=description content="example relative time plugin for jQuery">
+<meta name=viewport content="width=device-width, initial-scale=1">
+<title>Example - Relative Time plugin for jQuery</title>
+<style>
+	body {
+		margin: 0;
+		color: #333;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: 17px;
+		font-weight: 200;
+		line-height: 24.31px;
+		background-color: #eee;
+	}
+	.container {
+		width: 600px;
+		margin: 0 auto;
+	}
+	h1 {
+		font-weight: 100;
+	}
+</style>
+</head>
+<body>
+<div class="container">
+	<h1>Example - Relative Time plugin for jQuery</h1>
+	<h4>now</h4>
+	<div class="time">
+		<time id="now"></time> - <span id="nowcap"></span>
+	</div>
+	<h4>5 min ago.</h4>
+	<div class="time">
+		<time id="5m"></time> - <span id="5mcap"></span>
+	</div>
+	<h4>3 hours ago.</h4>
+	<div class="time">
+		<time id="3h"></time> - <span id="3hcap"></span>
+	</div>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="jquery.relativeTime.js"></script>
+<script>
+
+	function getTimeago(date, mins) {
+		return new Date(date.getTime() - (mins * 60000));
+	}
+
+	$(function() {
+			var date = new Date();
+			
+			$('#now').attr('datetime', date);
+			$('#nowcap').text(date);
+			$('#5m').attr('datetime', getTimeago(date, 5));
+			$('#5mcap').text(getTimeago(date, 5));
+			$('#3h').attr('datetime', getTimeago(date, 60 * 3));
+			$('#3hcap').text(getTimeago(date, 60 * 3));
+
+			$('time').relativeTime();
+
+	});
+</script>
+</body>
+</html>
