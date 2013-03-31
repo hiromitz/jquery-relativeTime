@@ -1,0 +1,13 @@
+{
+  "name": "jquery-relativeTime",
+  "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hiromitz/jquery-relativeTime.git"
+  },
+  "description": "jquery-relativeTime is a small lightweight jQuery plugin makes times easy to convert as relative time like twitter, facebook.",
+  "keywords": [
+    "time", "timeago", "relative"
+  ],
+  "bugs": "https://github.com/hiromitz/jquery-relativeTime/issues"
+}
