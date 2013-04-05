@@ -26,17 +26,18 @@ $.relativeTime = function(elem, op) {
 
 	var timeout,
 		datetime = $(elem).attr(op.attr),
-		dist = calcDist(datetime),
+		negdist = calcDist(datetime), //use this to calculate past / future.
+		dist = Math.abs(negdist),
 		text = (dist < 2) ? op.i18n.min :
-			(dist < 45) ? i18n('mins', dist) :
+			(dist < 45) ? i18n('mins', negdist) :
 			(dist < 90) ? op.i18n.hour :
-			(dist < 1440) ? i18n('hours', dist / 60) :
+			(dist < 1440) ? i18n('hours', negdist / 60) :
 			(dist < 2880) ? op.i18n.day :
-			(dist < 43200) ? i18n('days', dist / 1440) :
+			(dist < 43200) ? i18n('days', negdist / 1440) :
 			(dist < 86400) ? op.i18n.month :
-			(dist < 525960) ? i18n('months', dist / 43200) :
+			(dist < 525960) ? i18n('months', negdist / 43200) :
 			(dist < 1051199) ? op.i18n.year :
-			i18n('years', dist / 525960),
+			i18n('years', negdist / 525960),
 
 		t = (dist < 45) ? 60000 :
 			(dist < 2880) ? 60000 * 60 :
@@ -45,14 +46,18 @@ $.relativeTime = function(elem, op) {
 	if(0 < t && op.autoRefresh) {
 		timeout = setTimeout(function() {
 			clearTimeout(timeout);
-			if($elem.closest("body").length > 0) {$.relativeTime(elem); }
+			$.relativeTime($(elem));
 		}, t);
 	}
 
 	$(elem).text(text);
 
-	function i18n(key, dist) {
-		return op.i18n[key].replace(/%d/i, Math.floor(dist));
+	function i18n(key, negdist) {
+		var i18nText = op.i18n[key].replace(/%d/i, Math.floor(Math.abs(negdist)));
+		//Different display options if time is in past or future.			
+		(negdist < 0) ? i18nText += op.i18n.until : i18nText += op.i18n.ago;
+		
+		return i18nText;
 	}
 };
 
@@ -60,16 +65,18 @@ $.relativeTime.defaults = {
 	attr: 'datetime',
 	autoRefresh: true,
 	i18n: {
-		min: 'a minute ago',
-		mins: '%d minutes ago',
-		hour: 'an hour ago',
-		hours: '%d hours ago',
-		day: '1 day ago',
-		days: '%d days ago',
-		month: '1 month ago',
-		months: '%d months ago',
-		year: '1 year ago',
-		years: '%d years ago'
+		ago: ' ago',
+		until: ' until',
+		min: 'a minute',
+		mins: '%d minutes',
+		hour: 'an hour',
+		hours: '%d hours',
+		day: '1 day',
+		days: '%d days',
+		month: '1 month',
+		months: '%d months',
+		year: '1 year',
+		years: '%d years'
 	}
 };
 
