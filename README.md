@@ -16,7 +16,7 @@ jquery-relativeTime is a small lightweight jQuery plugin makes times easy to con
 
 ...
 
-<time class="relative" datetime="Wed, 09 Aug 2013 01:23:45 GMT">Wed, 09 Aug 2013</time>
+<time class="relative" datetime="Wed, 09 Aug 2013 01:23:45 GMT">a minute ago</time>
 ```
 
 ## Options
@@ -27,6 +27,8 @@ Default options
 attr: 'datetime',
 autoRefresh: true,
 i18n: {
+	ago: ' ago',
+	until: ' until',
 	min: 'a minute ago',
 	mins: '%d minutes ago',
 	hour: 'an hour ago',

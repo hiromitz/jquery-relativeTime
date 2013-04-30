@@ -39,6 +39,14 @@
 	<div class="time">
 		<time id="3h"></time> - <span id="3hcap"></span>
 	</div>
+	<h4>5 min until.</h4>
+	<div class="time">
+		<time id="u5m"></time> - <span id="u5mcap"></span>
+	</div>
+	<h4>2 years until.</h4>
+	<div class="time">
+	<time id="u3y"></time> - <span id="u3ycap"></span>
+	</div>
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -48,17 +56,31 @@
 	function getTimeago(date, mins) {
 		return new Date(date.getTime() - (mins * 60000));
 	}
-
+	
+	function getTimeuntil(date, mins) {
+		return new Date(date.getTime() + (mins * 60000));
+	}
+	
 	$(function() {
 			var date = new Date();
-			
+			//Now
 			$('#now').attr('datetime', date);
 			$('#nowcap').text(date);
+			
+			//Past
 			$('#5m').attr('datetime', getTimeago(date, 5));
 			$('#5mcap').text(getTimeago(date, 5));
 			$('#3h').attr('datetime', getTimeago(date, 60 * 3));
 			$('#3hcap').text(getTimeago(date, 60 * 3));
-
+			
+			//Future
+			$('#u5m').attr('datetime', getTimeuntil(date, 5));
+			$('#u5mcap').text(getTimeuntil(date, 5));
+			
+			$('#u3y').attr('datetime', getTimeuntil(date, 1231559));
+			$('#u3ycap').text(getTimeuntil(date, 1231559));
+			
+			//Call the plugin.
 			$('time').relativeTime();
 
 	});
