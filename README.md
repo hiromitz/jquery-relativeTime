@@ -10,7 +10,7 @@ jquery-relativeTime is a small lightweight jQuery plugin makes times easy to con
 <script src="jquery.relativeTime.js"></script>
 <script type="text/javascript">
    $(function() {
-     $("time.relative").timeago();
+     $("time.relative").relativeTime();
    });
 </script>
 
