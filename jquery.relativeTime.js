@@ -45,7 +45,7 @@ $.relativeTime = function(elem, op) {
 	if(0 < t && op.autoRefresh) {
 		timeout = setTimeout(function() {
 			clearTimeout(timeout);
-			if($elem.closest("body").length > 0) {$.relativeTime(elem); }
+			if($(elem).closest("body").length > 0) {$.relativeTime(elem); }
 		}, t);
 	}
 
